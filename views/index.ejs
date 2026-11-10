@@ -1,0 +1,36 @@
+<%# ===================================================================
+    views/index.ejs — DAY 2, STEP 2.15: the public home page
+    server.js sends us  { posts }  (an array of rows from the database).
+
+    EJS cheat sheet (written in words, because real EJS tags typed
+    inside a comment would break it):
+      "less-than percent ="   PRINT a value (safely escaped)
+      "less-than percent"     RUN JavaScript, print nothing (loops, ifs)
+      "less-than percent -"   PASTE IN another template (include)
+    The = sign means "show it". No = sign means "just run it".
+=================================================================== %>
+
+<%# STEP 2.15a — top of the page (DOCTYPE, <head>, site header) %>
+<%- include('partials/header') %>
+
+<h2>Latest Posts</h2>
+
+<%# STEP 2.15b — friendly message when the table is empty %>
+<% if (posts.length === 0) { %>
+  <p>No posts yet.</p>
+<% } %>
+
+<%# STEP 2.15c — one card per post. The loop lines use the run-only tag;
+    the values inside use the print tag (with =). %>
+<% posts.forEach(post => { %>
+  <article class="post-card">
+    <%# the link uses the post's id: /post/5, /post/6 ... (route in STEP 2.16) %>
+    <h3><a href="/post/<%= post.id %>"><%= post.title %></a></h3>
+    <p class="meta"><%= post.created_at %></p>
+    <%# preview: only the first 100 characters of the body %>
+    <p><%= post.body.substring(0, 100) %></p>
+  </article>
+<% }) %>
+
+<%# STEP 2.15d — bottom of the page %>
+<%- include('partials/footer') %>

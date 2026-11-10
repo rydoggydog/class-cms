@@ -1,0 +1,28 @@
+<%# ===================================================================
+    views/edit.ejs — DAY 3, STEP 3.16: ONE form for both New and Edit
+    server.js sends us  { post }:
+      post = null      -> we're CREATING a new post  (/admin/new)
+      post = a row     -> we're EDITING that post    (/admin/edit/:id)
+
+    The  ? :  is a one-line if/else:   condition ? ifTrue : ifFalse
+=================================================================== %>
+<%- include('partials/header') %>
+
+<%# STEP 3.16a — heading changes depending on new vs. edit %>
+<h2><%= post ? 'Edit Post' : 'New Post' %></h2>
+
+<%# STEP 3.16b — the form sends to a different route for new vs. edit %>
+<form action="<%= post ? '/admin/edit/' + post.id : '/admin/new' %>" method="POST" class="form">
+
+  <%# STEP 3.16c — pre-fill the title when editing, empty when new %>
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" value="<%= post ? post.title : '' %>" required>
+
+  <%# STEP 3.16d — a textarea's starting text goes BETWEEN its tags, not in value="" %>
+  <label for="body">Body</label>
+  <textarea id="body" name="body" rows="10" required><%= post ? post.body : '' %></textarea>
+
+  <button type="submit">Save</button>
+</form>
+
+<%- include('partials/footer') %>

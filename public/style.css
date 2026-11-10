@@ -1,0 +1,101 @@
+/* Web Design Club CMS - starter stylesheet
+   Palette: navy + light blue. Change the variables to restyle the whole site. */
+
+:root {
+  --navy: #1F3864;
+  --light-blue: #CADCFC;
+  --paper: #ffffff;
+  --text: #1b1b1b;
+  --danger: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Calibri, Arial, sans-serif;
+  color: var(--text);
+  background: #f4f7fd;
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: Cambria, Georgia, serif; color: var(--navy); }
+
+a { color: var(--navy); }
+
+.site-header {
+  background: var(--navy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+}
+
+.site-header h1 { margin: 0; font-size: 1.5rem; }
+.site-header a { color: var(--light-blue); text-decoration: none; }
+.site-header nav { display: flex; gap: 1rem; align-items: center; }
+
+main {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  min-height: 60vh;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--light-blue);
+  color: var(--navy);
+}
+
+.post-card, .post {
+  background: var(--paper);
+  border-left: 6px solid var(--navy);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.post-card h3 { margin: 0 0 0.25rem; }
+.meta { color: #555; font-size: 0.9rem; margin: 0 0 0.5rem; }
+.post-body { white-space: pre-wrap; }
+
+.form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 480px; }
+.form label { font-weight: bold; color: var(--navy); }
+.form input, .form textarea {
+  padding: 0.5rem;
+  border: 1px solid #99a8c8;
+  border-radius: 4px;
+  font: inherit;
+}
+
+button, .button {
+  background: var(--navy);
+  color: var(--paper);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .button:hover { background: #2b4c8c; }
+
+.site-header button { background: var(--light-blue); color: var(--navy); }
+
+form.inline { display: inline; }
+
+.error {
+  background: #fdecea;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.table { width: 100%; border-collapse: collapse; background: var(--paper); }
+.table th, .table td { padding: 0.6rem; border-bottom: 1px solid #d5ddef; text-align: left; }
+.table th { background: var(--light-blue); color: var(--navy); }

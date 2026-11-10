@@ -1,0 +1,40 @@
+<%# ===================================================================
+    views/partials/header.ejs — DAY 2, STEP 2.12
+    The top of EVERY page. Change it once here and every page updates
+    (C.R.A.P.: Repetition done right). Pages pull it in with an
+    include tag:  include('partials/header')
+    WATCH OUT: never type a percent-sign + > inside an EJS comment.
+    It ends the comment early ("Could not find matching close tag").
+=================================================================== %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Design Club</title>
+  <%# STEP 2.12a — /style.css works because express.static serves public/ %>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="/">Web Design Club</a></h1>
+    <%# STEP 3.8 — (Day 3) A login-aware menu. This replaced the Day 2 nav
+        that only had Home. "user" comes from the res.locals middleware
+        in server.js (STEP 3.6), so EVERY page knows who is logged in. %>
+    <nav>
+      <a href="/">Home</a>
+      <% if (user) { %>
+        <%# logged in: show Dashboard + a Log out button %>
+        <a href="/admin">Dashboard</a>
+        <%# Log out is a POST form, not a link (it changes something) %>
+        <form action="/logout" method="POST" class="inline">
+          <button type="submit">Log out</button>
+        </form>
+      <% } else { %>
+        <%# logged out: show a Log in link %>
+        <a href="/login">Log in</a>
+      <% } %>
+    </nav>
+  </header>
+  <%# STEP 2.12b — <main> stays OPEN here; footer.ejs closes it %>
+  <main>

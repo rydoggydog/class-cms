@@ -1,0 +1,17 @@
+<%# ===================================================================
+    views/post.ejs — DAY 2, STEP 2.17: one full post
+    server.js sends us  { post }  (ONE row from the database).
+=================================================================== %>
+<%- include('partials/header') %>
+
+<%# STEP 2.17a — the full post. .post-body keeps line breaks (pre-wrap). %>
+<article class="post">
+  <h2><%= post.title %></h2>
+  <p class="meta"><%= post.created_at %></p>
+  <div class="post-body"><%= post.body %></div>
+</article>
+
+<%# STEP 2.17b — a way back home. &larr; is the ← arrow character. %>
+<p><a href="/">&larr; Back to all posts</a></p>
+
+<%- include('partials/footer') %>

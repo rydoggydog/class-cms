@@ -1,0 +1,29 @@
+<%# ===================================================================
+    views/login.ejs — DAY 3, STEP 3.7: the login form
+    server.js sends us  { error }  — null at first, or a message after
+    a failed login attempt.
+=================================================================== %>
+<%- include('partials/header') %>
+
+<h2>Log in</h2>
+
+<%# STEP 3.7a — only show the red error box if there IS an error %>
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<%# STEP 3.7b — the form. method="POST" sends the data to app.post('/login').
+    Each input's NAME becomes a key in req.body (req.body.username, …).
+    label for="..." matches input id="..." so clicking a label focuses its box. %>
+<form action="/login" method="POST" class="form">
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" required>
+
+  <%# type="password" hides the characters as you type %>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">Log in</button>
+</form>
+
+<%- include('partials/footer') %>

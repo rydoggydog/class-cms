@@ -1,0 +1,37 @@
+<%# ===================================================================
+    views/dashboard.ejs — DAY 3: the admin dashboard (the R in CRUD)
+    server.js sends us  { posts }  — only after requireLogin lets us in.
+=================================================================== %>
+
+<%# STEP 3.13 — The page frame and the table's header row %>
+<%- include('partials/header') %>
+
+<h2>Dashboard</h2>
+<%# class="button" makes a link LOOK like a button (see style.css) %>
+<p><a href="/admin/new" class="button">+ New Post</a></p>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Created</th>
+    <th>Actions</th>
+  </tr>
+
+  <%# STEP 3.14 — One table row per post %>
+  <% posts.forEach(post => { %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.created_at %></td>
+      <td>
+        <%# Edit is a link (GET) — it only SHOWS the edit form %>
+        <a href="/admin/edit/<%= post.id %>">Edit</a>
+        <%# Delete is a POST form — anything that CHANGES data is a POST %>
+        <form action="/admin/delete/<%= post.id %>" method="POST" class="inline">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include('partials/footer') %>
